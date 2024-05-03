@@ -29,7 +29,6 @@ class FptCrawlData(CrawlData):
         link_details = []
         for a in soup.select(".cdt-product__info > h3 > a"):
             link_details.append(self.DOMAIN + a.get('href'))
-
         return link_details
     
     def get_info(self, link):
@@ -40,7 +39,18 @@ class FptCrawlData(CrawlData):
         data['Price sale'] = soup.select_one('.st-price__left .st-price-main').get_text() if soup.select_one('.st-price__left .st-price-main') else None
         data['Price origin'] = soup.select_one('.st-price__left .st-price-sub strike').get_text() if soup.select_one('.st-price__left .st-price-sub strike') else None
 
-        for item in soup.select(".card.card-normal tr"):
+        for item in soup.select(".st-pd-table tr"):
+            td = item.select("td")
+            key = td[0].get_text()
+            value = td[1].get_text()
+            data[key] = value
+
+        for item in soup.select(".c-modal__content .st-table tr"):
+            td = item.select("td")
+            key = td[0].get_text()
+            value = td[1].get_text()
+            data[key] = value
+        for item in soup.select("#idata-3 .st-table tr"):
             td = item.select("td")
             key = td[0].get_text()
             value = td[1].get_text()

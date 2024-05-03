@@ -25,7 +25,7 @@ class CrawlData:
             link_details = self.get_detail_links()
             self._save_detail_link_file(link_details)
 
-        with open(self.RAW_DATA_FILE, "a", encoding="utf-8") as f:
+        with open(self.RAW_DATA_FILE, "w", encoding="utf-8") as f:
             writer = csv.writer(f, delimiter=",", lineterminator='\n')
             header, header_set = [], set()
 
