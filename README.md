@@ -30,3 +30,4 @@ python PhilongCrawlData.py
     - Chỉ chạy code notebook ở phần 2.2 trở về sau
     - Cập nhật biến DATASET ở phần 3 thành đường dẫn đến file csv ở phần 2
 
+"# KHDL_Laptop" 
