@@ -29,9 +29,9 @@ class PhilongCrawlData(CrawlData):
         data['Title'] = soup.select_one('.entry-header > h1').get_text().strip().replace("\n", "") if soup.select_one('.entry-header > h1') else None
         data['Price sale'] = soup.select_one('.p-price > span').get_text().strip() if soup.select_one('.p-price > span') else None
         data['Price origin'] = soup.select_one('.p-unprice> span').get_text().strip() if soup.select_one('.p-unprice> span') else None
-        for item in soup.select(".info-technical > .tbl-technical  tr"):
+        for item in soup.select(".tbl-technical > table > tbody > tr"):
+            print(item)
             td = item.select("td")
-            print(td)
             # Kiểm tra xem hàng có ít nhất 2 phần tử td không
             if len(td) >= 2:
                 # Trích xuất văn bản từ thẻ span đầu tiên trong phần tử td đầu tiên và sử dụng strip() để loại bỏ các khoảng trắng thừa
@@ -40,15 +40,7 @@ class PhilongCrawlData(CrawlData):
                 key = key.replace("\n", "").lower().strip()
                 value = value.replace('\n',"")
                 data[key] = value
-        # for item in soup.select(".tbl-technical tr"):
-        #     td = item.select("td")
-        #     if len(td) > 1:
-        #         key = td[0].get_text()
-        #         value = td[1].get_text()
-
-        #         key = key.replace("\n", "").lower().strip()
-        #         value = value.replace('\n',"")
-        #         data[key] = value
+        
         data['url'] = link.replace("\n", "")
         return data
 

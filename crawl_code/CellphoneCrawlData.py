@@ -42,10 +42,10 @@ class CellphoneCrawlData(CrawlData):
         #data["Description"] = soup.select_one(".box-name__box-product-name p").get_text() if soup.select_one(".box-name__box-product-name p") else None
         data['Price sale'] = soup.select_one('p.tpt---sale-price').get_text() if soup.select_one('p.tpt---sale-price') else None
         data['Price origin'] = soup.select_one('p.tpt---price').get_text() if soup.select_one('p.tpt---price') else None
-        for item in soup.select(".technical-content li"):
-            key = item.select("li > p")[0].text
+        for item in soup.select("ul.technical-content-modal > li > div > div"):
+            key = item.select("p")[0].text
             print(key)
-            value = item.select("li > div")[0].text
+            value = item.select("div")[0].text
             print(item)
             data[key] = value
         data['url'] = link.replace("\n", "")
